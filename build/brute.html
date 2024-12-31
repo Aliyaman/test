@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caesar Cipher Brute Force</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Caesar Cipher Brute Force</h1>
+    <form method="POST" action="/brute">
+        <input type="text" name="kelime" placeholder="Enter text to decrypt" required>
+        <input type="submit" value="Decrypt">
+    </form>
+    
+    <a href="/" class="back-button">Back to Main Page</a>
+    <script src="static/js/cipher.js"></script>
+    <script>
+    document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        const text = document.querySelector('input[name="kelime"]').value;
+        const results = bruteForceDecode(text);
+        
+        const resultDiv = document.querySelector('.result');
+        let html = `<p><strong>Original text:</strong> ${text}</p>`;
+        results.forEach(result => {
+            html += `<p>Text: ${result.text}, key=${result.key}</p>`;
+        });
+        resultDiv.innerHTML = html;
+    };
+    </script>
+</body>
+</html> 
